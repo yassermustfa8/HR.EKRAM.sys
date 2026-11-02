@@ -110,7 +110,7 @@
     const u = $('login-username').value, p = $('login-pass').value, err = $('login-error'); err.textContent = '';
     if (!u.trim() || !p) { err.textContent = 'أدخل اسم المستخدم وكلمة المرور'; return; }
     try { await auth.signInWithEmailAndPassword(toEmail(u), p); }
-    catch (e) { err.textContent = 'اسم المستخدم أو كلمة المرور غير صحيحة'; }
+    catch (e) { console.error(e); err.textContent = 'اسم المستخدم أو كلمة المرور غير صحيحة (كود الخطأ: ' + e.code + ')'; }
   };
   auth.onAuthStateChanged(async user => {
     if (!user) { $('login-modal').classList.remove('hidden'); return; }
